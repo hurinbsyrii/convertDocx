@@ -1,0 +1,161 @@
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Container Card */
+.container {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Title */
+h1 {
+  font-size: 1.8rem;
+  color: #2a5d84;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #2a5d84;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* Upload Box */
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* File Input */
+input[type="file"] {
+  padding: 10px;
+  border: 2px dashed #2a5d84;
+  background: #f9f9f9;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+  text-align: center;
+}
+
+input[type="file"]:hover {
+  background: #eaf4fb;
+}
+
+/* Staff Selection */
+#staffSelection {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.staff-radio {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.staff-radio input {
+  margin-right: 10px;
+}
+
+.staff-radio label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Data Table */
+#dataDisplay {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#recordsTableContainer {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+#recordsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#recordsTable th,
+#recordsTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#recordsTable th {
+  background-color: #f2f8ff;
+  font-weight: 600;
+}
+
+#recordsTable tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Button */
+.generate-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #2a5d84, #18405c);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+  background: linear-gradient(135deg, #18405c, #0d2c44);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

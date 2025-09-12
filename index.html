@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel to PDF Letter Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>📄 Excel → PDF Letter Generator</h1>
+    <p class="subtitle">Upload your Excel file, select a staff member, and generate personalized PDF letters.</p>
+
+    <div class="upload-box">
+      <input type="file" id="excelFile" accept=".xlsx,.xls" />
+    </div>
+
+    <div id="staffSelection" class="hidden">
+      <h2>PIC TM</h2>
+      <div id="staffRadioGroup"></div>
+    </div>
+
+    <div id="dataDisplay" class="hidden">
+      <h2>Records for <span id="selectedStaffName"></span></h2>
+      <div id="recordsTableContainer">
+        <table id="recordsTable">
+          <thead>
+            <tr>
+              <th>Nama Tetuan</th>
+              <th>Consult</th>
+              <th>Tarikh</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="recordsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
+
+
+
