@@ -236,21 +236,21 @@ async function generateDOCX(row) {
       }),
       new TableRow({
         children: [
-          makeCell(new Paragraph({ children: [blackRun("PROJEK (K – 10)")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
+          makeCell(new Paragraph({ children: [blackRun("PROJEK")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
           makeCell(new Paragraph({ children: [blackRun(":")] }), { wType: WidthType.PERCENTAGE, w: 5, borders: borderAll() }),
           makeCell(new Paragraph({ children: [redRun((projek || "").toString().toUpperCase())] }), { wType: WidthType.PERCENTAGE, w: 70, borders: borderAll() }),
         ],
       }),
       new TableRow({
         children: [
-          makeCell(new Paragraph({ children: [blackRun("HARTANAH/TAPAK PROJEK (J – 9)")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
+          makeCell(new Paragraph({ children: [blackRun("HARTANAH/TAPAK PROJEK")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
           makeCell(new Paragraph({ children: [blackRun(":")] }), { wType: WidthType.PERCENTAGE, w: 5, borders: borderAll() }),
           makeCell(new Paragraph({ children: [redRun((tapak || "").toString().toUpperCase())] }), { wType: WidthType.PERCENTAGE, w: 70, borders: borderAll() }),
         ],
       }),
       new TableRow({
         children: [
-          makeCell(new Paragraph({ children: [blackRun("PEMILIK/PEMAJU (Q – 16)")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
+          makeCell(new Paragraph({ children: [blackRun("PEMILIK/PEMAJU")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
           makeCell(new Paragraph({ children: [blackRun(":")] }), { wType: WidthType.PERCENTAGE, w: 5, borders: borderAll() }),
           makeCell(new Paragraph({ children: [redRun((namaTetuan || "").toString().toUpperCase())] }), { wType: WidthType.PERCENTAGE, w: 70, borders: borderAll() }),
         ],
