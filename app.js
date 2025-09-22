@@ -327,9 +327,9 @@ async function generateDOCX(row) {
 
     // Header top-right
     new Paragraph({
-      children: [blackRun("SERAHAN POS/TANGAN FAKSIMILI", { bold: true })],
+      children: [blackRun("SERAHAN POS/TANGAN FAKSIMILI:", { bold: true })],
       alignment: AlignmentType.RIGHT,
-      spacing: { after: 200 },
+      spacing: { after: 250 },
     }),
 
     // Consultant + address
