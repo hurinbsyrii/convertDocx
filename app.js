@@ -327,7 +327,7 @@ async function generateDOCX(row) {
 
     // Header top-right
     new Paragraph({
-      children: [blackRun("SERAHAN POS/TANGAN", { bold: true })],
+      children: [blackRun("SERAHAN POS/TANGAN FAKSIMILI", { bold: true })],
       alignment: AlignmentType.RIGHT,
       spacing: { after: 200 },
     }),
@@ -337,7 +337,6 @@ async function generateDOCX(row) {
     ...alamatConsultant.toString().split(/\r?\n|,\s*/).filter(Boolean).map(
       ln => new Paragraph({ children: [blackRun(ln)] })
     ),
-    new Paragraph({ children: [blackRun("FAKSIMILI:")], spacing: { after: 100 } }),
 
     new Paragraph({ children: [blackRun(`U.P: ${uP}`)], spacing: { after: 200 } }),
     new Paragraph({ children: [blackRun("Tuan/Puan,")], spacing: { after: 100 } }),
