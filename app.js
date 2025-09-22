@@ -142,7 +142,7 @@ function addWrappedText(
 async function generateDOCX(row) {
   const {
     Document, Packer, Paragraph, TextRun, AlignmentType,
-    Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType,
+    Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, VerticalAlign
   } = window.docx;
 
   // ========= Excel → fields (from your indexes) =========
@@ -218,6 +218,12 @@ async function generateDOCX(row) {
       right: { style: BorderStyle.SINGLE, size: 8, color: "000000" },
     };
   }
+  const borderNone = {
+    top: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
+    bottom: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
+    left: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
+    right: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
+  };
 
   // ========= Subject table (title row spans + 3 detail rows) =========
   const subjTable = new Table({
@@ -320,24 +326,56 @@ async function generateDOCX(row) {
 
   // ========= Page 1 content =========
   const page1 = [
-    // Header top-left
+    // Header top-left (refs/date)
     new Paragraph({ children: [blackRun(`Ruj Kami: ${rujKami}`)], spacing: { after: 100 } }),
     new Paragraph({ children: [blackRun(`Ruj. Tuan: ${rujTuan}`)] }),
     new Paragraph({ children: [blackRun(`Tarikh: ${tarikhHeader}`)] }),
 
-    // Header top-right
-    new Paragraph({
-      children: [blackRun("SERAHAN POS/TANGAN FAKSIMILI:", { bold: true })],
-      alignment: AlignmentType.RIGHT,
-      spacing: { after: 250 },
+    // === NEW: Two-column header row (left = consultant + address, right = SERAHAN/FAKSIMILI) ===
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            // LEFT cell: consultant name + address (this defines where the address starts)
+            makeCell([
+              new Paragraph({ children: [blackRun(consultant.toString().toUpperCase(), { bold: true })] }),
+              ...alamatConsultant
+                .toString()
+                .split(/\r?\n|,\s*/)
+                .filter(Boolean)
+                .map(ln => new Paragraph({ children: [blackRun(ln)] })),
+            ], {
+              borders: borderNone,
+              wType: WidthType.PERCENTAGE,
+              w: 70,           // adjust this if your address block needs more/less width
+              vAlign: VerticalAlign.TOP,
+            }),
+
+            // RIGHT cell: compact two-line block, right-aligned
+            makeCell([
+              new Paragraph({
+                children: [blackRun("SERAHAN POS/TANGAN", { bold: true })],
+                alignment: AlignmentType.RIGHT,
+                spacing: { after: 0 },
+              }),
+              new Paragraph({
+                children: [blackRun("FAKSIMILI :", { bold: true })],
+                alignment: AlignmentType.RIGHT,
+                spacing: { after: 250 }, // keep your original bottom spacing before the next content
+              }),
+            ], {
+              borders: borderNone,
+              wType: WidthType.PERCENTAGE,
+              w: 30,
+              vAlign: VerticalAlign.TOP,
+            }),
+          ],
+        }),
+      ],
     }),
 
-    // Consultant + address
-    new Paragraph({ children: [blackRun(consultant.toString().toUpperCase(), { bold: true })] }),
-    ...alamatConsultant.toString().split(/\r?\n|,\s*/).filter(Boolean).map(
-      ln => new Paragraph({ children: [blackRun(ln)] })
-    ),
-
+    // U.P + salutation
     new Paragraph({ children: [blackRun(`U.P: ${uP}`)], spacing: { after: 200 } }),
     new Paragraph({ children: [blackRun("Tuan/Puan,")], spacing: { after: 100 } }),
 
@@ -522,8 +560,6 @@ async function generateDOCX(row) {
   a.click();
   document.body.removeChild(a);
 }
-
-
 
 // Convert Excel date to JavaScript Date object
 function excelDateToJSDate(serial) {
