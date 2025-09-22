@@ -225,44 +225,89 @@ async function generateDOCX(row) {
     right: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
   };
 
-  // ========= Subject table (title row spans + 3 detail rows) =========
-  const subjTable = new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    rows: [
-      new TableRow({
-        children: [
-          makeCell(
-            new Paragraph({
-              children: [blackRun("PERMOHONAN KEBENARAN MERANCANG", { bold: true })],
-              alignment: AlignmentType.LEFT,
-            }),
-            { span: 3, shading: { type: ShadingType.CLEAR, color: "auto", fill: "F2F2F2" }, borders: borderAll() }
-          ),
-        ],
-      }),
-      new TableRow({
-        children: [
-          makeCell(new Paragraph({ children: [blackRun("PROJEK")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
-          makeCell(new Paragraph({ children: [blackRun(":")] }), { wType: WidthType.PERCENTAGE, w: 5, borders: borderAll() }),
-          makeCell(new Paragraph({ children: [redRun((projek || "").toString().toUpperCase())] }), { wType: WidthType.PERCENTAGE, w: 70, borders: borderAll() }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          makeCell(new Paragraph({ children: [blackRun("HARTANAH/TAPAK PROJEK")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
-          makeCell(new Paragraph({ children: [blackRun(":")] }), { wType: WidthType.PERCENTAGE, w: 5, borders: borderAll() }),
-          makeCell(new Paragraph({ children: [redRun((tapak || "").toString().toUpperCase())] }), { wType: WidthType.PERCENTAGE, w: 70, borders: borderAll() }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          makeCell(new Paragraph({ children: [blackRun("PEMILIK/PEMAJU")] }), { wType: WidthType.PERCENTAGE, w: 25, borders: borderAll() }),
-          makeCell(new Paragraph({ children: [blackRun(":")] }), { wType: WidthType.PERCENTAGE, w: 5, borders: borderAll() }),
-          makeCell(new Paragraph({ children: [redRun((namaTetuan || "").toString().toUpperCase())] }), { wType: WidthType.PERCENTAGE, w: 70, borders: borderAll() }),
-        ],
-      }),
-    ],
-  });
+  // ========= Subject "table" with NO borders/shading =========
+const subjTable = new Table({
+  width: { size: 100, type: WidthType.PERCENTAGE },
+  rows: [
+    // Title row (no shading, no borders)
+    new TableRow({
+      children: [
+        makeCell(
+          new Paragraph({
+            children: [blackRun("PERMOHONAN KEBENARAN MERANCANG", { bold: true })],
+            alignment: AlignmentType.LEFT,
+            spacing: { after: 120 }, // a little space before the detail rows
+          }),
+          { span: 3, borders: borderNone }
+        ),
+      ],
+    }),
+
+    // PROJEK : VALUE
+    new TableRow({
+      children: [
+        makeCell(
+          new Paragraph({ children: [blackRun("PROJEK")] }),
+          { wType: WidthType.PERCENTAGE, w: 25, borders: borderNone }
+        ),
+        makeCell(
+          new Paragraph({ children: [blackRun(":")] }),
+          { wType: WidthType.PERCENTAGE, w: 5, borders: borderNone }
+        ),
+        makeCell(
+          new Paragraph({
+            children: [redRun((projek || "").toString().toUpperCase())],
+            spacing: { after: 60 },
+          }),
+          { wType: WidthType.PERCENTAGE, w: 70, borders: borderNone }
+        ),
+      ],
+    }),
+
+    // HARTANAH/TAPAK PROJEK : VALUE
+    new TableRow({
+      children: [
+        makeCell(
+          new Paragraph({ children: [blackRun("HARTANAH/TAPAK PROJEK")] }),
+          { wType: WidthType.PERCENTAGE, w: 25, borders: borderNone }
+        ),
+        makeCell(
+          new Paragraph({ children: [blackRun(":")] }),
+          { wType: WidthType.PERCENTAGE, w: 5, borders: borderNone }
+        ),
+        makeCell(
+          new Paragraph({
+            children: [redRun((tapak || "").toString().toUpperCase())],
+            spacing: { after: 60 },
+          }),
+          { wType: WidthType.PERCENTAGE, w: 70, borders: borderNone }
+        ),
+      ],
+    }),
+
+    // PEMILIK/PEMAJU : VALUE
+    new TableRow({
+      children: [
+        makeCell(
+          new Paragraph({ children: [blackRun("PEMILIK/PEMAJU")] }),
+          { wType: WidthType.PERCENTAGE, w: 25, borders: borderNone }
+        ),
+        makeCell(
+          new Paragraph({ children: [blackRun(":")] }),
+          { wType: WidthType.PERCENTAGE, w: 5, borders: borderNone }
+        ),
+        makeCell(
+          new Paragraph({
+            children: [redRun((namaTetuan || "").toString().toUpperCase())],
+            spacing: { after: 60 },
+          }),
+          { wType: WidthType.PERCENTAGE, w: 70, borders: borderNone }
+        ),
+      ],
+    }),
+  ],
+});
+
 
   // ========= Fees tables (values per screenshots) =========
   function money(n) { return n.toLocaleString("en-MY", { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
