@@ -87,43 +87,54 @@ input[type="file"]:focus {
   gap: 10px;
 }
 
+/* --- Improved Minimalist Checkbox Style --- */
 .staff-checkbox input[type="checkbox"] {
   appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #2a5d84;
-  border-radius: 6px;
-  background: #f7fbff;
-  transition: border 0.2s, box-shadow 0.2s;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #b0b8c1;
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color 0.18s, box-shadow 0.18s;
   cursor: pointer;
   position: relative;
-  outline: none;
-  margin-right: 8px;
+  margin-right: 10px;
+  vertical-align: middle;
+  box-shadow: 0 1px 2px rgba(42,93,132,0.03);
+}
+
+.staff-checkbox input[type="checkbox"]:hover,
+.staff-checkbox input[type="checkbox"]:focus {
+  border-color: #2a5d84;
+  box-shadow: 0 0 0 2px #e3f2fd;
 }
 
 .staff-checkbox input[type="checkbox"]:checked {
+  border-color: #2a5d84;
   background: #2a5d84;
-  border-color: #18405c;
 }
 
 .staff-checkbox input[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
-  left: 5px;
-  top: 2px;
-  width: 7px;
-  height: 12px;
+  left: 4.5px;
+  top: 1.5px;
+  width: 6px;
+  height: 11px;
   border: solid #fff;
-  border-width: 0 3px 3px 0;
+  border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg);
+  pointer-events: none;
 }
 
 .staff-checkbox label {
   font-weight: 500;
   cursor: pointer;
   color: #223;
-  font-size: 1.05rem;
+  font-size: 1.04rem;
   user-select: none;
+  letter-spacing: 0.01em;
+  padding-top: 1px;
 }
 
 /* Data Table */
