@@ -34,41 +34,56 @@ document.getElementById("excelFile").addEventListener("change", function (e) {
   reader.readAsArrayBuffer(e.target.files[0]);
 });
 
-// Display staff selection radio buttons
+// Display staff selection checkboxes
 function displayStaffSelection(staffNames) {
   const radioGroup = document.getElementById("staffRadioGroup");
   radioGroup.innerHTML = "";
 
   staffNames.forEach((staff, index) => {
     const div = document.createElement("div");
-    div.className = "staff-radio";
+    div.className = "staff-checkbox";
 
-    const radio = document.createElement("input");
-    radio.type = "radio";
-    radio.id = `staff-${index}`;
-    radio.name = "staff";
-    radio.value = staff;
-    if (index === 0) radio.checked = true;
-    radio.addEventListener("change", () => displayStaffData(staff));
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = `staff-${index}`;
+    checkbox.name = "staff";
+    checkbox.value = staff;
 
     const label = document.createElement("label");
     label.htmlFor = `staff-${index}`;
     label.textContent = staff;
 
-    div.appendChild(radio);
+    div.appendChild(checkbox);
     div.appendChild(label);
     radioGroup.appendChild(div);
   });
 
-  // Display data for the first staff by default
-  displayStaffData(staffNames[0]);
+  // Add a button to show records for selected staff
+  let showBtn = document.getElementById("showStaffRecordsBtn");
+  if (!showBtn) {
+    showBtn = document.createElement("button");
+    showBtn.id = "showStaffRecordsBtn";
+    showBtn.textContent = "Show Records";
+    showBtn.className = "generate-btn";
+    radioGroup.parentElement.appendChild(showBtn);
+  }
+  showBtn.onclick = function () {
+    const checked = Array.from(
+      document.querySelectorAll('input[name="staff"]:checked')
+    ).map((cb) => cb.value);
+    if (checked.length === 0) {
+      alert("Please select at least one staff.");
+      return;
+    }
+    displayStaffData(checked);
+  };
 }
 
-// Display data for selected staff (using indexes)
-function displayStaffData(staffName) {
-  const filteredData = rows.filter((row) => row[22] === staffName);
+// Display data for selected staff (array of names)
+function displayStaffData(staffNamesArr) {
+  const filteredData = rows.filter((row) => staffNamesArr.includes(row[22]));
 
-  document.getElementById("selectedStaffName").textContent = staffName;
+  document.getElementById("selectedStaffName").textContent = staffNamesArr.join(", ");
   const tableBody = document.getElementById("recordsTableBody");
   tableBody.innerHTML = "";
 
