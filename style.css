@@ -18,7 +18,7 @@ body {
   padding: 36px 32px 32px 32px;
   border-radius: 18px;
   box-shadow: 0 6px 32px rgba(42, 93, 132, 0.10);
-  max-width: 540px;
+  max-width: 900px; /* was 540px */
   width: 100%;
   margin: 48px 0;
   text-align: center;
@@ -74,27 +74,56 @@ input[type="file"]:focus {
   background: #eaf4fb;
 }
 
-/* Staff Selection */
+/* Staff Selection - Checkbox style */
 #staffSelection {
   margin: 18px 0 0 0;
   text-align: left;
 }
 
-.staff-radio {
+.staff-checkbox {
   margin: 7px 0;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
-.staff-radio input[type="radio"] {
-  accent-color: #2a5d84;
+.staff-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2a5d84;
+  border-radius: 6px;
+  background: #f7fbff;
+  transition: border 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+  outline: none;
   margin-right: 8px;
 }
 
-.staff-radio label {
+.staff-checkbox input[type="checkbox"]:checked {
+  background: #2a5d84;
+  border-color: #18405c;
+}
+
+.staff-checkbox input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 7px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.staff-checkbox label {
   font-weight: 500;
   cursor: pointer;
   color: #223;
+  font-size: 1.05rem;
+  user-select: none;
 }
 
 /* Data Table */
