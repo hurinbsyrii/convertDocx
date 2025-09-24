@@ -1,10 +1,11 @@
-/* Global Styles */
+/* Clean, minimalist, professional, unique, and on-theme */
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
-  color: #333;
+  background: linear-gradient(120deg, #e3f2fd 60%, #f1f8e9 100%);
+  color: #223;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,132 +15,170 @@ body {
 /* Container Card */
 .container {
   background: #fff;
-  padding: 40px 50px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  max-width: 900px;
+  padding: 36px 32px 32px 32px;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(42, 93, 132, 0.10);
+  max-width: 540px;
   width: 100%;
-  animation: fadeIn 0.6s ease-in-out;
+  margin: 48px 0;
+  text-align: center;
+  animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
 }
 
 /* Title */
 h1 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   color: #2a5d84;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.13rem;
   color: #2a5d84;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  text-align: left;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 24px;
+  font-size: 1.02rem;
+  color: #4a4a4a;
+  margin-bottom: 28px;
+  font-weight: 400;
 }
 
 /* Upload Box */
 .upload-box {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 /* File Input */
 input[type="file"] {
-  padding: 10px;
-  border: 2px dashed #2a5d84;
-  background: #f9f9f9;
-  border-radius: 10px;
+  padding: 11px;
+  border: 1.5px solid #2a5d84;
+  background: #f7fbff;
+  border-radius: 8px;
   cursor: pointer;
   width: 100%;
-  transition: 0.3s;
-  text-align: center;
+  font-size: 1rem;
+  transition: border 0.2s, background 0.2s;
+  outline: none;
 }
 
-input[type="file"]:hover {
+input[type="file"]:hover,
+input[type="file"]:focus {
+  border-color: #18405c;
   background: #eaf4fb;
 }
 
 /* Staff Selection */
 #staffSelection {
-  margin: 20px 0;
+  margin: 18px 0 0 0;
   text-align: left;
 }
 
 .staff-radio {
-  margin: 10px 0;
+  margin: 7px 0;
   display: flex;
   align-items: center;
 }
 
-.staff-radio input {
-  margin-right: 10px;
+.staff-radio input[type="radio"] {
+  accent-color: #2a5d84;
+  margin-right: 8px;
 }
 
 .staff-radio label {
   font-weight: 500;
   cursor: pointer;
+  color: #223;
 }
 
 /* Data Table */
 #dataDisplay {
-  margin-top: 20px;
+  margin-top: 18px;
   text-align: left;
 }
 
 #recordsTableContainer {
   overflow-x: auto;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 #recordsTable {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #f9fbfd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(42, 93, 132, 0.04);
 }
 
 #recordsTable th,
 #recordsTable td {
-  padding: 12px 15px;
+  padding: 10px 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 
 #recordsTable th {
-  background-color: #f2f8ff;
-  font-weight: 600;
+  background-color: #e3f2fd;
+  color: #18405c;
+  font-weight: 700;
+  border-bottom: 2px solid #d1e3f5;
+}
+
+#recordsTable td {
+  border-bottom: 1px solid #e9eef3;
+  font-size: 0.98rem;
+}
+
+#recordsTable tr:last-child td {
+  border-bottom: none;
 }
 
 #recordsTable tr:hover {
-  background-color: #f9f9f9;
+  background-color: #f1f8e9;
+  transition: background 0.2s;
 }
 
 /* Button */
 .generate-btn {
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #2a5d84, #18405c);
+  padding: 7px 18px;
+  background: linear-gradient(90deg, #2a5d84 60%, #18405c 100%);
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.97rem;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(42, 93, 132, 0.07);
 }
 
 .generate-btn:hover {
-  background: linear-gradient(135deg, #18405c, #0d2c44);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #18405c 60%, #2a5d84 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(42, 93, 132, 0.12);
+}
+
+/* System Name */
+.system-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #18405c;
+  background: linear-gradient(90deg, #e3f2fd 60%, #f1f8e9 100%);
+  padding: 12px 0 12px 0;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(42, 93, 132, 0.07);
+  text-align: center;
+  border: 1.5px solid #e3f2fd;
+  text-transform: uppercase;
 }
 
 /* Utility Classes */
@@ -147,13 +186,30 @@ input[type="file"]:hover {
   display: none;
 }
 
-/* Animation */
+@media (max-width: 700px) {
+  .container {
+    padding: 18px 4vw;
+    max-width: 98vw;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  .system-name {
+    font-size: 1rem;
+    padding: 8px 0;
+  }
+  #recordsTable th, #recordsTable td {
+    padding: 7px 6px;
+    font-size: 0.93rem;
+  }
+}
+
+/* Subtle fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
